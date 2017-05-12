@@ -4,10 +4,9 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-dlib_cc	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/buffer.cpp	/^namespace dlib_cc$/;"	namespace	line:11	file:
-lts_map_unit	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/buffer.cpp	/^namespace lts_map_unit$/;"	namespace	line:13	namespace:dlib_cc	file:
-Buffer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/buffer.cpp	/^Buffer::Buffer()$/;"	function	line:16	class:dlib_cc::lts_map_unit::Buffer	signature:()
-Buffer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/buffer.cpp	/^Buffer::Buffer(int w, int h)$/;"	function	line:20	class:dlib_cc::lts_map_unit::Buffer	signature:(int w, int h)
-Buffer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/buffer.cpp	/^Buffer::Buffer(int w, int h, int f)$/;"	function	line:27	class:dlib_cc::lts_map_unit::Buffer	signature:(int w, int h, int f)
-Write	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/buffer.cpp	/^void Buffer::Write(int col, int row, int val)$/;"	function	line:34	class:dlib_cc::lts_map_unit::Buffer	signature:(int col, int row, int val)
-Queue	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/buffer.cpp	/^void Buffer::Queue(int index)$/;"	function	line:45	class:dlib_cc::lts_map_unit::Buffer	signature:(int index)
+DLIB_CC_LTS_MAP_RENDERER_H	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^#define DLIB_CC_LTS_MAP_RENDERER_H$/;"	macro	line:2
+dlib_cc	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^namespace dlib_cc$/;"	namespace	line:8
+lts_map_unit	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^	namespace lts_map_unit$/;"	namespace	line:10	namespace:dlib_cc
+Renderer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^		class Renderer$/;"	class	line:12	namespace:dlib_cc::lts_map_unit
+auto_resize_	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^			bool auto_resize_;$/;"	member	line:22	class:dlib_cc::lts_map_unit::Renderer
+sprites_	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^			dlib_cc::fast_shift_table<cocos2d::Sprite*> sprites_;$/;"	member	line:23	class:dlib_cc::lts_map_unit::Renderer
