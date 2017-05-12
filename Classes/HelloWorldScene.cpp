@@ -77,9 +77,9 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
 
-    // dlib_cc::lts_map_unit::Buffer buff(5 ,5, 444);
-    // buff.DisableQueuingAfterWrite(true);
-    dlib_cc::fast_shift_table<int> buff(5, 5, 444);
+    dlib_cc::lts_map_unit::Buffer buff(5 ,5, 444);
+    buff.DisableQueuingAfterWrite(true);
+    // dlib_cc::fast_shift_table<int> buff(5, 5, 444);
     for(int y = 5 - 1; 0 <= y; --y)
     {
         for(int x = 0; x < 5; ++x)
@@ -95,30 +95,30 @@ bool HelloWorld::init()
     {
         for(int x = 0; x < 5; ++x)
         {
-            // buff.Write(x, y, 10 + y * 5 + x);
-            buff(x, y) = 10 + y * 5 + x;
-            // std::cout << buff.Read(x, y) << ", ";
-            std::cout << buff(x, y) << ", ";
+            buff.Write(x, y, 10 + y * 5 + x);
+            // buff(x, y) = 10 + y * 5 + x;
+            std::cout << buff.Read(x, y) << ", ";
+            // std::cout << buff(x, y) << ", ";
         }
 
         std::cout << '\n';
     }
 
-    // std::cout << "buff.Read(4, 3) = " << buff.Read(4, 3) << '\n';
-    // std::cout << "buff.Read(2, 1) = " << buff.Read(2, 1) << '\n';
-    // std::cout << "buff.Read(2, 4) = " << buff.Read(2, 4) << '\n';
+    std::cout << "buff.Read(4, 3) = " << buff.Read(4, 3) << '\n';
+    std::cout << "buff.Read(2, 1) = " << buff.Read(2, 1) << '\n';
+    std::cout << "buff.Read(2, 4) = " << buff.Read(2, 4) << '\n';
 
-    std::cout << "buff.Read(4, 3) = " << buff(4, 3) << '\n';
-    std::cout << "buff.Read(2, 1) = " << buff(2, 1) << '\n';
-    std::cout << "buff.Read(2, 4) = " << buff(2, 4) << '\n';
+    // std::cout << "buff.Read(4, 3) = " << buff(4, 3) << '\n';
+    // std::cout << "buff.Read(2, 1) = " << buff(2, 1) << '\n';
+    // std::cout << "buff.Read(2, 4) = " << buff(2, 4) << '\n';
 
-    // std::cout << "in que => ";
-    // for(auto a : buff.rendering_queue())
-    // {
-    //     std::cout << a << ", ";
-    // }
-    //
-    // std::cout << '\n';
+    std::cout << "in que => ";
+    for(auto a : buff.rendering_queue())
+    {
+        std::cout << a << ", ";
+    }
+
+    std::cout << '\n';
 
     std::cout << "log using unordered-iterator" << '\n';
 
@@ -154,10 +154,10 @@ bool HelloWorld::init()
 
     std::cout << "\n\n";
 
-    // buff.ShiftColumns(-2);
-    // buff.ShiftRows(2);
-    buff.shift_columns(-2);
-    buff.shift_rows(2);
+    buff.ShiftColumns(-2);
+    buff.ShiftRows(2);
+    // buff.shift_columns(-2);
+    // buff.shift_rows(2);
 
     std::cout << "shifted" << '\n';
 
@@ -165,8 +165,8 @@ bool HelloWorld::init()
     {
         for(int x = 0; x < 5; ++x)
         {
-            // std::cout << buff.Read(x, y) << ", ";
-            std::cout << buff(x, y) << ", ";
+            std::cout << buff.Read(x, y) << ", ";
+            // std::cout << buff(x, y) << ", ";
         }
 
         std::cout << '\n';
@@ -240,8 +240,8 @@ bool HelloWorld::init()
     {
         for(int x = 0; x < 5; ++x)
         {
-            // std::cout << buff.Read(x, y) << ", ";
-            std::cout << buff(x, y) << ", ";
+            std::cout << buff.Read(x, y) << ", ";
+            // std::cout << buff(x, y) << ", ";
         }
 
         std::cout << '\n';
