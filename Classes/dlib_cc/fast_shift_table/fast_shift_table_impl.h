@@ -181,7 +181,8 @@ typename fast_shift_table<T>::row_iterator fast_shift_table<T>::begin_row(int ro
 		zero + width_,
 		zero,
 		0,
-		row);
+		row,
+		this);
 }
 
 template <typename T>
@@ -208,7 +209,8 @@ const
 		zero + width_,
 		zero,
 		0,
-		row);
+		row,
+		this);
 }
 
 template <typename T>
@@ -236,7 +238,7 @@ typename fast_shift_table<T>::column_iterator fast_shift_table<T>::begin_column(
 		zero,
 		col,
 		0,
-		width_);
+		this);
 }
 
 template <typename T>
@@ -264,7 +266,7 @@ const
 		zero,
 		col,
 		0,
-		width_);
+		this);
 }
 
 template <typename T>
@@ -293,10 +295,11 @@ template <typename T>
 template <typename iterator_type, typename reference_type, typename pointer_type>
 fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>
 ::template_iterator(
-	pointer_type bs, pointer_type bg, pointer_type ed, pointer_type zr, int c, int r, difference_type tc)
-:base(bs),begin(bg),end(ed),zero(zr),position(c, r),tick(tc)
+	pointer_type bs, pointer_type bg, pointer_type ed, pointer_type zr, int c, int r, fast_shift_table<T>* parent)
+:base(bs),begin(bg),end(ed),zero(zr),position(c, r),tick()
 {
 	assert(zero <= begin && begin <= end);
+	ex_init<iterator_type>()(parent, this);
 }
 
 template <typename T>
@@ -334,7 +337,7 @@ fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_ty
 fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>
 ::operator++()
 {
-	advance_position<iterator_type>()(position, 1);
+	ex_advance_position<iterator_type>()(position, 1);
 
 	if(zero == begin)
 	{
@@ -359,7 +362,7 @@ fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_ty
 fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>
 ::operator--()
 {
-	advance_position<iterator_type>()(position, -1);
+	ex_advance_position<iterator_type>()(position, -1);
 
 	if(zero == begin)
 	{
@@ -400,7 +403,7 @@ fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_ty
 
 /**********************************************************************************
  *
- * SPECIALIZETATION OF ADVANCE_POSITION CLASSES (FUNCTION OBJECT)
+ * SPECIALIZETATION OF ex_advance_position CLASSES (FUNCTION OBJECT)
  *
  **********************************************************************************/
 #define SPECIALIZE_ADVANCE_POS_FUNC_OBJ_FOR_ROW_ITERATOR(row_itr_type) \
@@ -408,7 +411,7 @@ template <typename T>\
 template <typename iterator_type, typename reference_type, typename pointer_type>\
 template <typename V>\
 struct fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>\
-::advance_position<row_itr_type, V>\
+::ex_advance_position<row_itr_type, V>\
 {\
 	void operator()(dlib_cc::vec2<int>& pos, int delta)\
 	{\
@@ -421,7 +424,7 @@ template <typename T>\
 template <typename iterator_type, typename reference_type, typename pointer_type>\
 template <typename V>\
 struct fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>\
-::advance_position<column_itr_type, V>\
+::ex_advance_position<column_itr_type, V>\
 {\
 	void operator()(dlib_cc::vec2<int>& pos, int delta)\
 	{\
@@ -438,6 +441,48 @@ SPECIALIZE_ADVANCE_POS_FUNC_OBJ_FOR_COLUMN_ITERATOR(
 	typename fast_shift_table<T>::column_iterator_type);
 SPECIALIZE_ADVANCE_POS_FUNC_OBJ_FOR_COLUMN_ITERATOR(
 	typename fast_shift_table<T>::const_column_iterator_type);
+
+/**********************************************************************************
+ *
+ * SPECIALIZETATION OF ex_init CLASSES (FUNCTION OBJECT)
+ *
+ **********************************************************************************/
+#define SPECIALIZE_INIT_FUNC_OBJ_FOR_ROW_ITERATOR(row_itr_type) \
+template <typename T>\
+template <typename iterator_type, typename reference_type, typename pointer_type>\
+template <typename V>\
+struct fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>\
+::ex_init<row_itr_type, V>\
+{\
+	void operator()(\
+		fast_shift_table<T>* parent,\
+		fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>* iterator)\
+	{\
+		/* the initialization for row iterators */\
+		iterator->tick = 1;\
+	}\
+}\
+
+#define SPECIALIZE_INIT_FUNC_OBJ_FOR_COLUMN_ITERATOR(column_itr_type) \
+template <typename T>\
+template <typename iterator_type, typename reference_type, typename pointer_type>\
+template <typename V>\
+struct fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>\
+::ex_init<column_itr_type, V>\
+{\
+	void operator()(\
+		fast_shift_table<T>* parent,\
+		fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>* iterator)\
+	{\
+		/* the initialization for column iterators */\
+		iterator->tick = parent->width();\
+	}\
+}\
+
+SPECIALIZE_INIT_FUNC_OBJ_FOR_ROW_ITERATOR(typename fast_shift_table<T>::row_iterator_type);
+SPECIALIZE_INIT_FUNC_OBJ_FOR_ROW_ITERATOR(typename fast_shift_table<T>::const_row_iterator_type);
+SPECIALIZE_INIT_FUNC_OBJ_FOR_COLUMN_ITERATOR(typename fast_shift_table<T>::column_iterator_type);
+SPECIALIZE_INIT_FUNC_OBJ_FOR_COLUMN_ITERATOR(typename fast_shift_table<T>::const_column_iterator_type);
 
 } /* namespace dlib_cc */
 

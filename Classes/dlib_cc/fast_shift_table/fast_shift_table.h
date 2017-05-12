@@ -37,16 +37,16 @@ private:
 	dlib_cc::mobius_strip<int> column_index_origin_;
 	std::vector<T> buffer_;
 
-/**********************************************************************************
- *
- * ITERATOR
- *
- **********************************************************************************/
+	/**********************************************************************************
+	 *
+	 * ITERATOR
+	 *
+	 **********************************************************************************/
 private:
-/**
- * the following structures are invisible from the other classes,
- * and that have no body (only used for specialization of template_iterator class)
- */
+	/**
+	 * the following structures are invisible from the other classes,
+	 * and that have no body (only used for specialization of template_iterator class)
+	 */
 	struct row_iterator_type;
 	struct column_iterator_type;
 	struct const_row_iterator_type;
@@ -61,9 +61,9 @@ public:
 	using reference = value_type&;
 	using const_reference = const value_type&;
 
-/**
- * iterator names
- */
+	/**
+	 * iterator names
+	 */
 	template <typename iterator_type, typename reference_type, typename pointer_type>
 	struct template_iterator;
 	using row_iterator = template_iterator<row_iterator_type, reference, pointer>;
@@ -73,9 +73,9 @@ public:
 	using unordered_iterator = typename std::vector<T>::iterator;
 	using const_unordered_iterator = typename std::vector<T>::const_iterator;
 
-/**
-* GETTER METHODS FOR ITERATORS
-*/
+	/**
+	 * GETTER METHODS FOR ITERATORS
+	 */
 	unordered_iterator begin();
 	unordered_iterator end();
 	const_unordered_iterator begin() const;
@@ -110,13 +110,15 @@ public:
 		difference_type tick;
 
 		template_iterator();
-		template_iterator(pointer_type bs, pointer_type bg, pointer_type ed, pointer_type zr, int c, int r, difference_type tc = 1);
+		template_iterator(pointer_type bs, pointer_type bg, pointer_type ed, pointer_type zr, int c, int r, fast_shift_table<T>* parent);
 		template_iterator(const template_iterator& other);
-		difference_type operator-(const template_iterator& other) const { return static_cast<difference_type>(base - other.base); }
 		template_iterator& operator=(const template_iterator& other);
 		template_iterator& operator++();
 		template_iterator& operator--();
 		template_iterator& operator+=(difference_type n);
+
+		// inline methods
+		difference_type operator-(const template_iterator& other) const { return static_cast<difference_type>(base - other.base); }
 		template_iterator operator++(int) { auto old = *this; ++*this; return old; }
 		template_iterator operator--(int) { auto old = *this; --*this; return old; }
 		template_iterator operator+(difference_type n) const { auto cp = *this; return (cp += n); }
@@ -133,9 +135,14 @@ public:
 
 	private:
 		// function object
-		template <typename itr_type, typename = void> struct advance_position
+		template <typename itr_type, typename = void> struct ex_advance_position
 		{
 			void operator()(dlib_cc::vec2<int>& pos, int delta);
+		};
+
+		template <typename itr_type, typename = void> struct ex_init
+		{
+			void operator()(fast_shift_table<T>* parent, template_iterator<iterator_type, reference_type, pointer_type>* iterator);
 		};
 
 	}; /* struct template_iterator */
