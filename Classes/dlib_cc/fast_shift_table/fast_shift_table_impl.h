@@ -294,7 +294,7 @@ template <typename T>
 template <typename iterator_type, typename reference_type, typename pointer_type>
 fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>
 ::template_iterator(
-	pointer_type bs, pointer_type bg, pointer_type ed, pointer_type zr, int c, int r, fast_shift_table<T>* parent)
+	pointer_type bs, pointer_type bg, pointer_type ed, pointer_type zr, int c, int r, const fast_shift_table<T>* parent)
 :base(bs),begin(bg),end(ed),zero(zr),position(c, r),tick()
 {
 	assert(zero <= begin && begin <= end);
@@ -454,7 +454,7 @@ struct fast_shift_table<T>::template_iterator<iterator_type, reference_type, poi
 ::ex_init<row_itr_type, V>\
 {\
 	void operator()(\
-		fast_shift_table<T>* parent,\
+		const fast_shift_table<T>* parent,\
 		fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>* iterator)\
 	{\
 		/* the initialization for row iterators */\
@@ -470,7 +470,7 @@ struct fast_shift_table<T>::template_iterator<iterator_type, reference_type, poi
 ::ex_init<column_itr_type, V>\
 {\
 	void operator()(\
-		fast_shift_table<T>* parent,\
+		const fast_shift_table<T>* parent,\
 		fast_shift_table<T>::template_iterator<iterator_type, reference_type, pointer_type>* iterator)\
 	{\
 		/* the initialization for column iterators */\

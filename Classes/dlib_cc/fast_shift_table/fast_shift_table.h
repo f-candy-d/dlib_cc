@@ -30,6 +30,8 @@ public:
 	// operators
 	T& operator()(int col, int row) { return buffer_[to_index(col, row)]; }
 	const T& operator()(int col, int row) const { return buffer_[to_index(col, row)]; }
+	T& operator[](int index) { return buffer_[index]; }
+	const T& operator[](int index) const { return buffer_[index]; }
 
 	// accessors
 	int width() const { return width_; }
@@ -115,7 +117,7 @@ public:
 		difference_type tick;
 
 		template_iterator();
-		template_iterator(pointer_type bs, pointer_type bg, pointer_type ed, pointer_type zr, int c, int r, fast_shift_table<T>* parent);
+		template_iterator(pointer_type bs, pointer_type bg, pointer_type ed, pointer_type zr, int c, int r, const fast_shift_table<T>* parent);
 		template_iterator(const template_iterator& other);
 		template_iterator& operator=(const template_iterator& other);
 		template_iterator& operator++();
@@ -147,7 +149,7 @@ public:
 
 		template <typename itr_type, typename = void> struct ex_init
 		{
-			void operator()(fast_shift_table<T>* parent, template_iterator<iterator_type, reference_type, pointer_type>* iterator);
+			void operator()(const fast_shift_table<T>* parent, template_iterator<iterator_type, reference_type, pointer_type>* iterator);
 		};
 
 	}; /* struct template_iterator */
