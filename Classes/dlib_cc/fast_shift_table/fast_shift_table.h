@@ -5,6 +5,11 @@
 #include "../vec2/vec2.h"
 #include <vector>
 
+/**
+ * the speed of ways to access an element in fast_shift_table is :
+ * unordered-iterator > row/column-iterator >= read(),write(),operator()
+ */
+
 namespace dlib_cc
 {
 template <typename T> class fast_shift_table

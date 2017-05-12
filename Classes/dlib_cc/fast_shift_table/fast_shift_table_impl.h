@@ -85,8 +85,7 @@ const
 template <typename T>
 void fast_shift_table<T>::write(int col, int row, T val)
 {
-	auto index = to_index(col, row);
-	buffer_[index] = val;
+	buffer_[to_index(col, row)] = val;
 }
 
 template <typename T>
