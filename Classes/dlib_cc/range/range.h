@@ -12,9 +12,9 @@ namespace dlib_cc
 
 		rect() :left(0),bottom(0),right(0),top(0) {}
 		rect(T l, T b, T r, T t) :left(l),bottom(b),right(r),top(t) {}
-		T size() const { height() * width(); }
-		T width() const { right - left; }
-		T height() const { top - bottom; }
+		T size() const { return height() * width(); }
+		T width() const { return right - left; }
+		T height() const { return top - bottom; }
 		void move_ver(T delta) { top += delta; bottom += delta; }
 		void move_hor(T delta) { left += delta; right += delta; }
 	};

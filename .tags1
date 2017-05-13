@@ -4,9 +4,12 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-DLIB_CC_LTS_MAP_RENDERER_H	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^#define DLIB_CC_LTS_MAP_RENDERER_H$/;"	macro	line:2
-dlib_cc	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^namespace dlib_cc$/;"	namespace	line:8
-lts_map_unit	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^	namespace lts_map_unit$/;"	namespace	line:10	namespace:dlib_cc
-Renderer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^		class Renderer$/;"	class	line:12	namespace:dlib_cc::lts_map_unit
-auto_resize_	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^			bool auto_resize_;$/;"	member	line:22	class:dlib_cc::lts_map_unit::Renderer
-sprites_	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.h	/^			dlib_cc::fast_shift_table<cocos2d::Sprite*> sprites_;$/;"	member	line:23	class:dlib_cc::lts_map_unit::Renderer
+dlib_cc	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^namespace dlib_cc$/;"	namespace	line:11	file:
+lts_map_unit	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^namespace lts_map_unit$/;"	namespace	line:13	namespace:dlib_cc	file:
+Renderer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^Renderer::Renderer()$/;"	function	line:16	class:dlib_cc::lts_map_unit::Renderer	signature:()
+Renderer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^Renderer::Renderer(const Buffer& buffer)$/;"	function	line:28	class:dlib_cc::lts_map_unit::Renderer	signature:(const Buffer& buffer)
+Renderer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^Renderer::Renderer(const Buffer& buffer, Sprite* def_val)$/;"	function	line:40	class:dlib_cc::lts_map_unit::Renderer	signature:(const Buffer& buffer, Sprite* def_val)
+RenderBuffer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^int Renderer::RenderBuffer(const Buffer& buffer)$/;"	function	line:52	class:dlib_cc::lts_map_unit::Renderer	signature:(const Buffer& buffer)
+Init	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^void Renderer::Init(Sprite* def_val)$/;"	function	line:58	class:dlib_cc::lts_map_unit::Renderer	signature:(Sprite* def_val)
+FillSpriteTable	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^void Renderer::FillSpriteTable(Sprite* def_val)$/;"	function	line:63	class:dlib_cc::lts_map_unit::Renderer	signature:(Sprite* def_val)
+AddSpritesToCanvas	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^void AddSpritesToCanvas()$/;"	function	line:76	namespace:dlib_cc::lts_map_unit	signature:()

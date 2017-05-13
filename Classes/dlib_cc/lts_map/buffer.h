@@ -3,6 +3,7 @@
 
 #include "../mobius_strip/mobius_strip.h"
 #include "../fast_shift_table/fast_shift_table.h"
+#include "../range/range.h"
 #include <vector>
 
 namespace dlib_cc
@@ -25,15 +26,16 @@ public:
 	using const_column_iterator = dlib_cc::fast_shift_table<value_type>::const_column_iterator;
 
 	Buffer();
-	Buffer(int w, int h);
-	Buffer(int w, int h, int f);
-	void Resize(int w, int h) { terrain_buff_.resize(w, h); }
-	void Resize(int w, int h, int f) { terrain_buff_.resize(w, h, f); }
-	int Size() const { return terrain_buff_.size(); }
-	const value_type& Read(int col, int row) const { return terrain_buff_(col, row); }
+	Buffer(int width, int height);
+	Buffer(int width, int height, int def);
+	Buffer(int orig_col, int orig_row, int width, int height);
+	Buffer(int orig_col, int orig_row, int width, int height, int def);
+	void Resize(int width, int height) { terrain_buff_.resize(width, height); }
+	void Resize(int width, int height, int def) { terrain_buff_.resize(width, height, def); }
+	int Size() const { return terrain_buff_.size(); } const value_type& Read(int col, int row) const { return terrain_buff_(col, row); }
 	void Write(int col, int row, value_type val);
-	void ShiftColumns(int distance) { terrain_buff_.shift_columns(distance); }
-	void ShiftRows(int distance) { terrain_buff_.shift_rows(distance); }
+	void ShiftColumns(int distance);
+	void ShiftRows(int distance);
 	void DisableQueuingAfterWrite(bool bol) { que_after_write_ = !bol; }
 	void Queue(int col, int row) { Queue(terrain_buff_.to_index(col, row)); }
 
@@ -57,12 +59,14 @@ public:
 	// accessors & mutators
 	int width() const { return terrain_buff_.width(); }
 	int height() const { return terrain_buff_.height(); }
+	const dlib_cc::rect<int> loading_range() const { return loading_range_; }
 	std::vector<int>& rendering_queue () { return rendering_que_; }
 	const std::vector<int>& rendering_queue () const { return rendering_que_; }
 
 private:
 	bool que_after_write_;
 	dlib_cc::fast_shift_table<value_type> terrain_buff_;
+	dlib_cc::rect<int> loading_range_;
 	std::vector<int> rendering_que_;
 
 	void Queue(int index);

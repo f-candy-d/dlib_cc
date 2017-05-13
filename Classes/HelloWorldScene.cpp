@@ -154,6 +154,11 @@ bool HelloWorld::init()
 
     std::cout << "\n\n";
 
+    auto rt = buff.loading_range();
+    std::cout << "rect(l,b,r,t) => " <<  rt.left << "," << rt.bottom << "," << rt.right << "," << rt.top << '\n';
+    std::cout << "size(rect) => " << rt.size() << '\n';
+    std::cout << "size => " << buff.Size() << '\n';
+
     buff.ShiftColumns(-2);
     buff.ShiftRows(2);
     // buff.shift_columns(-2);
@@ -247,6 +252,11 @@ bool HelloWorld::init()
         std::cout << '\n';
     }
     std::cout << '\n';
+
+    rt = buff.loading_range();
+    std::cout << "rect(l,b,r,t) => " <<  rt.left << "," << rt.bottom << "," << rt.right << "," << rt.top << '\n';
+    std::cout << "size(rect) => " << rt.size() << '\n';
+    std::cout << "size => " << buff.Size() << '\n';
 
     return true;
 }

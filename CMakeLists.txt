@@ -131,6 +131,7 @@ set(GAME_SRC
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
   Classes/dlib_cc/lts_map/buffer.cpp
+  Classes/dlib_cc/lts_map/renderer.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
