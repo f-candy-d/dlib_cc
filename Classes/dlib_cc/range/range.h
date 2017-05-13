@@ -5,13 +5,13 @@ namespace dlib_cc
 {
 	template <typename T> struct rect
 	{
-		T top;
-		T bottom;
 		T left;
+		T bottom;
 		T right;
+		T top;
 
-		rect() :top(0),bottom(0),left(0),right(0) {}
-		rect(T t, T b, T l, T r) :top(t),bottom(b),left(l),right(r) {}
+		rect() :left(0),bottom(0),right(0),top(0) {}
+		rect(T l, T b, T r, T t) :left(l),bottom(b),right(r),top(t) {}
 		T size() const { height() * width(); }
 		T width() const { right - left; }
 		T height() const { top - bottom; }
