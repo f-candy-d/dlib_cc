@@ -20,9 +20,8 @@ Renderer::Renderer()
 ,canvas_(nullptr)
 ,texture_atlas_src_()
 ,texture_position_map_()
-,added_sprites_to_canvas_(false)
 {
-	Init(Sprite::create());
+	Init(Sprite::create(), nullptr);
 }
 
 Renderer::Renderer(const Buffer& buffer)
@@ -32,9 +31,8 @@ Renderer::Renderer(const Buffer& buffer)
 ,canvas_(nullptr)
 ,texture_atlas_src_()
 ,texture_position_map_()
-,added_sprites_to_canvas_(false)
 {
-	Init(Sprite::create());
+	Init(Sprite::create(), nullptr);
 }
 
 Renderer::Renderer(const Buffer& buffer, Sprite* def_val)
@@ -44,9 +42,19 @@ Renderer::Renderer(const Buffer& buffer, Sprite* def_val)
 ,canvas_(nullptr)
 ,texture_atlas_src_()
 ,texture_position_map_()
-,added_sprites_to_canvas_(false)
 {
-	Init(def_val);
+	Init(def_val, nullptr);
+}
+
+Renderer::Renderer(const Buffer& buffer, Sprite* def_val, Layer* canvas)
+:sprite_table_(buffer.width(), buffer.height())
+,origin_(0.0, 0.0)
+,texture_size_(0.0, 0.0)
+,canvas_(nullptr)
+,texture_atlas_src_()
+,texture_position_map_()
+{
+	Init(def_val, canvas);
 }
 
 int Renderer::RenderBuffer(const Buffer& buffer)
@@ -55,9 +63,18 @@ int Renderer::RenderBuffer(const Buffer& buffer)
 	return rendered;
 }
 
-void Renderer::Init(Sprite* def_val)
+void Renderer::SetCanvas(cocos2d::Layer* canvas)
 {
+	RemoveSpritesFromCanvas();
+	canvas_ = canvas;
+	AddSpritesToCanvas();
+}
+
+void Renderer::Init(Sprite* def_val, Layer* canvas)
+{
+	// NOTE : DO NOT change the order of the following methods!
 	FillSpriteTable(def_val);
+	SetCanvas(canvas);
 }
 
 void Renderer::FillSpriteTable(Sprite* def_val)
@@ -73,18 +90,25 @@ void Renderer::FillSpriteTable(Sprite* def_val)
 	}
 }
 
-void AddSpritesToCanvas()
+void Renderer::AddSpritesToCanvas()
 {
-	assert(canvas);
-
-	if(!added_sprites_to_canvas_)
+	if(canvas_ != nullptr)
 	{
 		for(auto& sp : sprite_table_)
 		{
-			canvas->addChild(sp);
+			canvas_->addChild(sp);
 		}
+	}
+}
 
-		added_sprites_to_canvas_ = true;
+void Renderer::RemoveSpritesFromCanvas()
+{
+	if(canvas_ != nullptr)
+	{
+		for(auto& sp : sprite_table_)
+		{
+			canvas_->removeChild(sp, true);
+		}
 	}
 }
 

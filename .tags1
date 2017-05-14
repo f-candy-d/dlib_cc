@@ -4,12 +4,6 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-dlib_cc	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^namespace dlib_cc$/;"	namespace	line:11	file:
-lts_map_unit	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^namespace lts_map_unit$/;"	namespace	line:13	namespace:dlib_cc	file:
-Renderer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^Renderer::Renderer()$/;"	function	line:16	class:dlib_cc::lts_map_unit::Renderer	signature:()
-Renderer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^Renderer::Renderer(const Buffer& buffer)$/;"	function	line:28	class:dlib_cc::lts_map_unit::Renderer	signature:(const Buffer& buffer)
-Renderer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^Renderer::Renderer(const Buffer& buffer, Sprite* def_val)$/;"	function	line:40	class:dlib_cc::lts_map_unit::Renderer	signature:(const Buffer& buffer, Sprite* def_val)
-RenderBuffer	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^int Renderer::RenderBuffer(const Buffer& buffer)$/;"	function	line:52	class:dlib_cc::lts_map_unit::Renderer	signature:(const Buffer& buffer)
-Init	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^void Renderer::Init(Sprite* def_val)$/;"	function	line:58	class:dlib_cc::lts_map_unit::Renderer	signature:(Sprite* def_val)
-FillSpriteTable	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^void Renderer::FillSpriteTable(Sprite* def_val)$/;"	function	line:63	class:dlib_cc::lts_map_unit::Renderer	signature:(Sprite* def_val)
-AddSpritesToCanvas	/home/daichi/dev/projects/cocos/DLibCC/Classes/dlib_cc/lts_map/renderer.cpp	/^void AddSpritesToCanvas()$/;"	function	line:76	namespace:dlib_cc::lts_map_unit	signature:()
+createScene	/home/daichi/dev/projects/cocos/DLibCC/Classes/HelloWorldScene.cpp	/^Scene* HelloWorld::createScene()$/;"	function	line:10	class:HelloWorld	signature:()
+init	/home/daichi/dev/projects/cocos/DLibCC/Classes/HelloWorldScene.cpp	/^bool HelloWorld::init()$/;"	function	line:26	class:HelloWorld	signature:()
+menuCloseCallback	/home/daichi/dev/projects/cocos/DLibCC/Classes/HelloWorldScene.cpp	/^void HelloWorld::menuCloseCallback(Ref* pSender)$/;"	function	line:265	class:HelloWorld	signature:(Ref* pSender)

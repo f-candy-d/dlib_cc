@@ -78,7 +78,7 @@ bool HelloWorld::init()
     this->addChild(sprite, 0);
 
     dlib_cc::lts_map_unit::Buffer buff(5 ,5, 444);
-    buff.DisableQueuingAfterWrite(true);
+    // buff.DisableQueuingAfterWrite(true);
     // dlib_cc::fast_shift_table<int> buff(5, 5, 444);
     for(int y = 5 - 1; 0 <= y; --y)
     {

@@ -25,13 +25,12 @@ public:
 	void write(int col, int row, T val);
 	void shift_columns(int distance);
 	void shift_rows(int distance);
+	int to_raw_index(int col, int row) const;
 	int to_index(int col, int row) const;
 
 	// operators
-	T& operator()(int col, int row) { return buffer_[to_index(col, row)]; }
-	const T& operator()(int col, int row) const { return buffer_[to_index(col, row)]; }
-	T& operator[](int index) { return buffer_[index]; }
-	const T& operator[](int index) const { return buffer_[index]; }
+	T& operator()(int col, int row) { return buffer_[to_raw_index(col, row)]; }
+	const T& operator()(int col, int row) const { return buffer_[to_raw_index(col, row)]; }
 
 	// accessors
 	int width() const { return width_; }

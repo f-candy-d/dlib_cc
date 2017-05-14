@@ -18,7 +18,9 @@ public:
 	Renderer();
 	Renderer(const Buffer& buffer);
 	Renderer(const Buffer& buffer, cocos2d::Sprite* def_val);
+	Renderer(const Buffer& buffer, cocos2d::Sprite* def_val, cocos2d::Layer* canvas);
 	int RenderBuffer(const Buffer& buffer);
+	void SetCanvas(cocos2d::Layer* canvas);
 
 private:
 	dlib_cc::fast_shift_table<cocos2d::Sprite*> sprite_table_;
@@ -28,10 +30,11 @@ private:
 	std::string texture_atlas_src_;
 	// key = texture id, value = position
 	std::unordered_map<int, cocos2d::Vec2> texture_position_map_;
-	bool added_sprites_to_canvas_;
 
-	void Init(cocos2d::Sprite* def_val);
+	void Init(cocos2d::Sprite* def_val, cocos2d::Layer* canavs);
 	void FillSpriteTable(cocos2d::Sprite* def_val);
+	void AddSpritesToCanvas();
+	void RemoveSpritesFromCanvas();
 };
 
 } /* namespace lts_map_unit */

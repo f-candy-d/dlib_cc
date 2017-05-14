@@ -77,13 +77,13 @@ template <typename T>
 const T& fast_shift_table<T>::read(int col, int row)
 const
 {
-	return buffer_[to_index(col, row)];
+	return buffer_[to_raw_index(col, row)];
 }
 
 template <typename T>
 void fast_shift_table<T>::write(int col, int row, T val)
 {
-	buffer_[to_index(col, row)] = val;
+	buffer_[to_raw_index(col, row)] = val;
 }
 
 template <typename T>
@@ -99,21 +99,28 @@ void fast_shift_table<T>::shift_rows(int distance)
 }
 
 template <typename T>
-int fast_shift_table<T>::to_index(int col, int row)
+int fast_shift_table<T>::to_raw_index(int col, int row)
 const
 {
 	assert(0 <= row && row < height_);
 	assert(0 <= col && col < width_);
 
-	dlib_cc::mobius_strip<int> index(row_index_origin_() * width_, 0, width_ * (height_ - 1), width_);
-	index.advance(row);
+	dlib_cc::mobius_strip<int> raw_index(row_index_origin_() * width_, 0, width_ * (height_ - 1), width_);
+	raw_index.advance(row);
 
-	index.tick = 1;
-	index.begin = index();
-	index.end = index.begin + width_ - 1;
-	index.advance(column_index_origin_() + col);
+	raw_index.tick = 1;
+	raw_index.begin = raw_index();
+	raw_index.end = raw_index.begin + width_ - 1;
+	raw_index.advance(column_index_origin_() + col);
 
-	return index();
+	return raw_index();
+}
+
+template <typename T>
+int fast_shift_table<T>::to_index(int col, int row)
+const
+{
+	return row * width_ + col;
 }
 
 /**********************************************************************************
@@ -136,8 +143,6 @@ using reference = typename fast_shift_table<T>::reference;
 template <typename T>
 using const_reference = typename fast_shift_table<T>::const_reference;
 
-// template <typename T>
-// typename std::vector<T>::iterator fast_shift_table<T>::begin()
 template <typename T>
 typename fast_shift_table<T>::unordered_iterator fast_shift_table<T>::begin()
 {

@@ -51,12 +51,11 @@ Buffer::Buffer(int orig_col, int orig_row, int width, int height, int def)
 
 void Buffer::Write(int col, int row, int val)
 {
-	auto index = terrain_buff_.to_index(col, row);
-	terrain_buff_[index] = val;
+	terrain_buff_.write(col, row, val);
 
 	if(que_after_write_)
 	{
-		Queue(index);
+		Queue(terrain_buff_.to_index(col, row));
 	}
 }
 
